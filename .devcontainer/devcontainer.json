@@ -1,0 +1,16 @@
+{
+    "build": {
+        "context": "..",
+        "dockerfile": "./Dockerfile"
+    },
+    "forwardPorts": [
+        9501
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    }
+}

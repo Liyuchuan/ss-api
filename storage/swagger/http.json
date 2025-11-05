@@ -1,0 +1,1 @@
+{"openapi":"3.0.0","paths":{"\/login":{"post":{"description":"小程序登录接口","operationId":"af704524b829a3c6cea821006f70e2b0"}}},"servers":[{"url":"http:\/\/127.0.0.1:9501","description":"Test Server"}],"info":{"title":"Sample API","description":"This is a sample API using OpenAPI 3.0 specification","version":"1.0.0"}}
