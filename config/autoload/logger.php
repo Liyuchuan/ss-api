@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
+use Monolog\Level;
 
 /*
  * This file is part of Hyperf.
@@ -26,9 +26,9 @@ return [
         'handler' => [
             'class' => StreamHandler::class,
             'constructor' => [
-                // 'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
-                'stream' => 'php://output',
-                'level' => Logger::DEBUG,
+                'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
+                // 'stream' => 'php://output',
+                'level' => Level::Info,
             ],
         ],
         'formatter' => [
