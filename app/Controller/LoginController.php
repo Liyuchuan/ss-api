@@ -12,13 +12,30 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Hyperf\Swagger\Annotation as HA;
+use App\Schema\LoginSchema;
+use App\Service\LoginService;
+use Hyperf\Swagger\Annotation as SA;
+use Hyperf\Swagger\Request\SwaggerRequest;
+use Hyperf\Di\Annotation\Inject;
 
-#[HA\HyperfServer('http')]
+#[SA\HyperfServer('http')]
 class LoginController extends AbstractController
 {
-    #[HA\Post(path: '/login', description: '小程序登录接口')]
-    public function login()
+
+    #[Inject]
+    protected LoginService $service;
+
+    #[SA\Post(path: '/login', summary: '小程序登录接口', tags: ['注册登录'])]
+    #[SA\RequestBody(content: new SA\JsonContent(properties: [
+        new SA\Property(property: 'code', description: '微信授权码', type: 'string', rules: 'required|string')
+    ]))]
+    #[SA\Response(response: '200', content: new SA\JsonContent(ref: LoginSchema::class))]
+    public function login(SwaggerRequest $request)
     {
+        $code = (string) $request->input('code');
+
+        $result = $this->service->login($code);
+
+        return $this->response->json($result);
     }
 }
