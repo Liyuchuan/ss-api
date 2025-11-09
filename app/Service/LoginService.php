@@ -29,8 +29,8 @@ class LoginService extends Service
                 'appid' => $this->application->getAccount()->getAppId(),
                 'secret' => $this->application->getAccount()->getSecret(),
                 'js_code' => $code,
-                'grant_type' => 'authorization_code'
-            ]
+                'grant_type' => 'authorization_code',
+            ],
         ]);
 
         return Json::decode($result->getContent());

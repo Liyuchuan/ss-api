@@ -14,20 +14,19 @@ namespace App\Controller;
 
 use App\Schema\LoginSchema;
 use App\Service\LoginService;
+use Hyperf\Di\Annotation\Inject;
 use Hyperf\Swagger\Annotation as SA;
 use Hyperf\Swagger\Request\SwaggerRequest;
-use Hyperf\Di\Annotation\Inject;
 
 #[SA\HyperfServer('http')]
 class LoginController extends AbstractController
 {
-
     #[Inject]
     protected LoginService $service;
 
     #[SA\Post(path: '/login', summary: '小程序登录接口', tags: ['注册登录'])]
     #[SA\RequestBody(content: new SA\JsonContent(properties: [
-        new SA\Property(property: 'code', description: '微信授权码', type: 'string', rules: 'required|string')
+        new SA\Property(property: 'code', description: '微信授权码', type: 'string', rules: 'required|string'),
     ]))]
     #[SA\Response(response: '200', content: new SA\JsonContent(ref: LoginSchema::class))]
     public function login(SwaggerRequest $request)
