@@ -16,6 +16,7 @@
         "hyperf/cache": "~3.1.0",
         "hyperf/command": "~3.1.0",
         "hyperf/config": "~3.1.0",
+        "hyperf/constants": "^3.1",
         "hyperf/database": "~3.1.0",
         "hyperf/db-connection": "~3.1.0",
         "hyperf/di": "^3.1",
@@ -52,7 +53,9 @@
         "psr-4": {
             "App\\": "app/"
         },
-        "files": []
+        "files": [
+            "app/Kernel/Functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -11,7 +11,7 @@ declare(strict_types=1);
  */
 use Han\Utils\Middleware\RequestHandledDebugMiddleware;
 
-/**
+/*
  * This file is part of Hyperf.
  *
  * @see     https://www.hyperf.io

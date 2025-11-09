@@ -13,10 +13,19 @@ declare(strict_types=1);
 namespace App\Schema;
 
 use Hyperf\Swagger\Annotation as SA;
+use JsonSerializable;
 
 #[SA\Schema()]
-class LoginSchema
+class LoginSchema implements JsonSerializable
 {
-    #[SA\Property(type: 'string', title: 'token')]
-    public string $token;
+    public function __construct(
+        #[SA\Property(type: 'string', title: 'Token')]
+        public string $token,
+    ) {
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return ['token' => $this->token];
+    }
 }
