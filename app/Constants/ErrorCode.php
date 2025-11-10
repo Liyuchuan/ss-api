@@ -24,6 +24,9 @@ enum ErrorCode: int implements ErrorCodeInterface
     #[Message('Server Error')]
     case SERVER_ERROR = 500;
 
+    #[Message('参数错误')]
+    case PARAMS_INVALID = 1000;
+
     #[Message('Token 已失效')]
     case TOKEN_INVALID = 700;
 

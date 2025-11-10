@@ -21,13 +21,14 @@ use Monolog\Level;
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 return [
     'default' => [
         'handler' => [
             'class' => StreamHandler::class,
             'constructor' => [
-                'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
-                // 'stream' => 'php://output',
+                // 'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
+                'stream' => 'php://output',
                 'level' => Level::Info,
             ],
         ],

@@ -9,7 +9,9 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+use App\Middleware\AuthMiddleware;
 use Han\Utils\Middleware\RequestHandledDebugMiddleware;
+use Hyperf\Validation\Middleware\ValidationMiddleware;
 
 /*
  * This file is part of Hyperf.
@@ -19,8 +21,11 @@ use Han\Utils\Middleware\RequestHandledDebugMiddleware;
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 return [
     'http' => [
         RequestHandledDebugMiddleware::class,
+        AuthMiddleware::class,
+        ValidationMiddleware::class,
     ],
 ];
