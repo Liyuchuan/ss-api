@@ -24,7 +24,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class AuthMiddleware implements MiddlewareInterface
 {
-    public function __construct(protected ContainerInterface $container) {}
+    public function __construct(protected ContainerInterface $container)
+    {
+    }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
@@ -37,7 +39,7 @@ class AuthMiddleware implements MiddlewareInterface
         }
 
         $token = $request->getHeaderLine(UserAuth::X_TOKEN);
-        if (!$token) {
+        if (! $token) {
             throw new BusinessException(ErrorCode::TOKEN_INVALID);
         }
 

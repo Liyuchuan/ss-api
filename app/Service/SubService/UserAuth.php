@@ -48,15 +48,20 @@ class UserAuth
         return $this->token;
     }
 
+    public function getUserId(): int
+    {
+        return $this->userId;
+    }
+
     public function load(string $token): static
     {
         $res = di()->get(Redis::class)->get(self::PREFIX . $token);
-        if (!$res) {
+        if (! $res) {
             throw new BusinessException(ErrorCode::TOKEN_INVALID);
         }
 
         $data = Json::decode($res);
-        if (empty($data['id']) || !is_int($data['id'])) {
+        if (empty($data['id']) || ! is_int($data['id'])) {
             throw new BusinessException(ErrorCode::TOKEN_INVALID);
         }
 

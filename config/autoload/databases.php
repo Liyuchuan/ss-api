@@ -9,6 +9,15 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+/*
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://hyperf.wiki
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
+ */
+
 use function Hyperf\Support\env;
 
 return [
@@ -33,8 +42,10 @@ return [
         'commands' => [
             'gen:model' => [
                 'path' => 'app/Model',
-                'force_casts' => true,
+                'force_casts' => false,
                 'inheritance' => 'Model',
+                'uses' => '',
+                'with_comments' => true,
             ],
         ],
     ],

@@ -12,15 +12,15 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use App\Constants\ContentType;
 use Carbon\Carbon;
-use Hyperf\DbConnection\Model\Model;
 
 /**
  * @property int $id
- * @property int $user_id
- * @property int $secret_id
- * @property string $content
- * @property int $type
+ * @property int $user_id 用户 ID
+ * @property int $secret_id 密码 ID
+ * @property string $content 内容
+ * @property ContentType $type 类型 0 文本 1 音频 2 视频
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */
@@ -39,5 +39,5 @@ class Content extends Model
     /**
      * The attributes that should be cast to native types.
      */
-    protected array $casts = ['id' => 'integer', 'user_id' => 'integer', 'secret_id' => 'integer', 'type' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected array $casts = ['id' => 'integer', 'user_id' => 'integer', 'secret_id' => 'integer', 'type' => ContentType::class, 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }
