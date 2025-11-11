@@ -21,7 +21,7 @@ use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\Swagger\Annotation as SA;
 
 #[SA\HyperfServer('http')]
-class UserController extends AbstractController
+class UserController extends Controller
 {
     #[Inject]
     protected UserService $service;
@@ -33,6 +33,6 @@ class UserController extends AbstractController
         $userId = UserAuth::instance()->getUserId();
 
         $result = $this->service->info($userId);
-        return $this->response->json($result);
+        return $this->response->success($result);
     }
 }

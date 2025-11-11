@@ -19,7 +19,7 @@ use Hyperf\Swagger\Annotation as SA;
 use Hyperf\Swagger\Request\SwaggerRequest;
 
 #[SA\HyperfServer('http')]
-class LoginController extends AbstractController
+class LoginController extends Controller
 {
     #[Inject]
     protected LoginService $service;
@@ -35,6 +35,6 @@ class LoginController extends AbstractController
 
         $result = $this->service->login($code);
 
-        return $this->response->json($result);
+        return $this->response->success($result);
     }
 }
