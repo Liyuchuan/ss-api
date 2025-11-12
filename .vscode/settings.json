@@ -1,0 +1,4 @@
+{
+    "phpunit.command": "\"${phpunit}\" --prepend test/bootstrap.php ${phpunitargs}",
+    "phpunit.phpunit": "vendor/bin/co-phpunit"
+}

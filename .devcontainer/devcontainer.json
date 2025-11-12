@@ -10,7 +10,8 @@
         "vscode": {
             "extensions": [
                 "bmewburn.vscode-intelephense-client",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+                "recca0120.vscode-phpunit"
             ]
         }
     }

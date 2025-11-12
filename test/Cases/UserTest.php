@@ -12,16 +12,22 @@ declare(strict_types=1);
 
 namespace HyperfTest\Cases;
 
-use Hyperf\Testing\TestCase;
+use App\Service\SubService\UserAuth;
+use HyperfTest\HttpTestCase;
 
 /**
  * @internal
  * @coversNothing
  */
-class ExampleTest extends TestCase
+class UserTest extends HttpTestCase
 {
-    public function testExample()
+
+    public function testUserInfo()
     {
-        $this->get('/')->assertOk()->assertSee('Hello SS API');
+        $res = $this->get('/user/info', [], [
+            UserAuth::X_TOKEN => $this->token,
+        ]);
+
+        $this->assertSame(0, $res['code']);
     }
 }
