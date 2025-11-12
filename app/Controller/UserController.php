@@ -16,8 +16,6 @@ use App\Schema\UserSchema;
 use App\Service\SubService\UserAuth;
 use App\Service\UserService;
 use Hyperf\Di\Annotation\Inject;
-use Hyperf\HttpServer\Contract\RequestInterface;
-use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\Swagger\Annotation as SA;
 
 #[SA\HyperfServer('http')]
