@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace HyperfTest;
 
 use App\Service\SubService\WeChatService;
+use Hyperf\Di\Container;
 use Hyperf\Testing\Client;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -34,9 +35,9 @@ abstract class HttpTestCase extends TestCase
      */
     protected $client;
 
-    protected bool $init = false;
+    protected static bool $init = false;
 
-    protected string $token = '';
+    protected static string $token = '';
 
     public function __construct($name = null, array $data = [], $dataName = '')
     {
@@ -53,10 +54,10 @@ abstract class HttpTestCase extends TestCase
     {
         parent::setUp();
 
-        if (!$this->init) {
-            $this->init = true;
+        if (! self::$init) {
+            self::$init = true;
 
-            /** @var \Hyperf\Di\Container $container */
+            /** @var Container $container */
             $container = di();
             $container->set(WeChatService::class, $chat = Mockery::mock(WeChatService::class));
             $chat->shouldReceive('login')->with('1234567890')->andReturn(['openid' => 'oDA2A1x56y3kqdwVLqCP_WqcI0x0']);
@@ -65,7 +66,7 @@ abstract class HttpTestCase extends TestCase
                 'code' => '1234567890',
             ]);
 
-            $this->token = $res['data']['token'];
+            self::$token = $res['data']['token'];
         }
     }
 }

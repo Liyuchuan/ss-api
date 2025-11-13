@@ -9,36 +9,23 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\StreamHandler;
+use Monolog\Formatter\JsonFormatter;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Level;
-
-/*
- * This file is part of Hyperf.
- *
- * @see     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
 
 return [
     'default' => [
         'handler' => [
-            'class' => StreamHandler::class,
+            'class' => RotatingFileHandler::class,
             'constructor' => [
-                // 'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
-                'stream' => 'php://output',
-                'level' => Level::Info,
+                'filename' => BASE_PATH . '/runtime/logs/hyperf.log',
+                // 'stream' => 'php://output',
+                'level' => Level::Debug,
             ],
         ],
         'formatter' => [
-            'class' => LineFormatter::class,
-            'constructor' => [
-                'format' => null,
-                'dateFormat' => 'Y-m-d H:i:s',
-                'allowInlineLineBreaks' => true,
-            ],
+            'class' => JsonFormatter::class,
+            'constructor' => [],
         ],
     ],
 ];
