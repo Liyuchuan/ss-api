@@ -36,6 +36,9 @@ enum ErrorCode: int implements ErrorCodeInterface
     #[Message('用户不存在')]
     case USER_NOT_EXIST = 1001;
 
+    #[Message('密码不存在')]
+    case SECRET_NOT_EXIST = 1100;
+
     public function getMessage(?array $translate = null): string
     {
         $arguments = [];
