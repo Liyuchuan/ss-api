@@ -16,8 +16,10 @@ use App\Constants\ContentType;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\Content;
+use App\Schema\ContentSchema;
 use App\Service\Dao\ContentDao;
 use App\Service\Dao\SecretDao;
+use App\Service\SubService\Encrypter;
 use App\Service\SubService\UserAuth;
 use Han\Utils\Service;
 use Hyperf\Di\Annotation\Inject;
@@ -26,6 +28,9 @@ class ContentService extends Service
 {
     #[Inject]
     protected ContentDao $dao;
+
+    #[Inject]
+    protected Encrypter $encrypter;
 
     /**
      * @param array{title: string, content: string, secret_id: int} $input
@@ -59,7 +64,19 @@ class ContentService extends Service
         }
 
         $model->title = $input['title'];
-        $model->content = $input['content'];
+        $model->content = $this->encrypter->encrypt($input['content'], $userAuth->getSecret());
         return $model->save();
+    }
+
+    public function info(int $id, UserAuth $userAuth)
+    {
+        $userAuth->build();
+
+        $model = $this->dao->first($id, true);
+        if ($model->user_id !== $userAuth->getUserId()) {
+            throw new BusinessException(ErrorCode::PERMISSION_DENY);
+        }
+
+        return new ContentSchema($model, true);
     }
 }

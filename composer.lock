@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9cb1a943a542994892f4e56c58c431a",
+    "content-hash": "5efb8cedbc7e0d2e887a064b5b0ca646",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -3689,6 +3689,72 @@
             "time": "2025-10-30T01:44:44+00:00"
         },
         {
+            "name": "hyperf/utils",
+            "version": "v3.1.42",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/utils.git",
+                "reference": "4b13a567a61d08a3c4d058499e28a5b26fc18f1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/utils/zipball/4b13a567a61d08a3c4d058499e28a5b26fc18f1c",
+                "reference": "4b13a567a61d08a3c4d058499e28a5b26fc18f1c",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/inflector": "^2.0",
+                "hyperf/code-parser": "~3.1.0",
+                "hyperf/codec": "~3.1.0",
+                "hyperf/collection": "~3.1.0",
+                "hyperf/context": "~3.1.0",
+                "hyperf/contract": "~3.1.0",
+                "hyperf/coordinator": "~3.1.0",
+                "hyperf/coroutine": "~3.1.0",
+                "hyperf/engine": "^2.0",
+                "hyperf/macroable": "~3.1.0",
+                "hyperf/serializer": "~3.1.0",
+                "hyperf/stringable": "~3.1.0",
+                "hyperf/support": "~3.1.0",
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A tools package that could help developer solved the problem quickly.",
+            "homepage": "https://hyperf.io",
+            "keywords": [
+                "hyperf",
+                "php",
+                "swoole",
+                "utils"
+            ],
+            "support": {
+                "docs": "https://hyperf.wiki",
+                "issues": "https://github.com/hyperf/hyperf/issues",
+                "pull-request": "https://github.com/hyperf/hyperf/pulls",
+                "source": "https://github.com/hyperf/hyperf"
+            },
+            "funding": [
+                {
+                    "url": "https://hyperf.wiki/#/zh-cn/donate",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://opencollective.com/hyperf",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2024-09-25T02:54:12+00:00"
+        },
+        {
             "name": "hyperf/validation",
             "version": "v3.1.63",
             "source": {
@@ -4056,6 +4122,73 @@
                 "source": "https://github.com/limingxinleo/hyperf-utils/tree/v4.1.2"
             },
             "time": "2025-08-18T06:30:00+00:00"
+        },
+        {
+            "name": "limingxinleo/i-encryption",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/limingxinleo/i-encryption.git",
+                "reference": "ec4e3e825808f094d43e4de1d44040430f07343f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/limingxinleo/i-encryption/zipball/ec4e3e825808f094d43e4de1d44040430f07343f",
+                "reference": "ec4e3e825808f094d43e4de1d44040430f07343f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "hyperf/utils": "^2.0|^3.0",
+                "php": ">=7.2"
+            },
+            "replace": {
+                "illuminate/encryption": "*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "limingxinleo/happy-join-hyperf": "^1.0",
+                "mockery/mockery": "^1.0",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": ">=7.0",
+                "swoole/ide-helper": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "hyperf": {
+                    "config": "Illuminate\\Encryption\\ConfigProvider"
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Encryption\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Illuminate Encryption for Hyperf",
+            "keywords": [
+                "hyperf",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/limingxinleo/i-encryption/issues",
+                "source": "https://github.com/limingxinleo/i-encryption/tree/v1.1.0"
+            },
+            "time": "2022-04-01T11:22:50+00:00"
         },
         {
             "name": "monolog/monolog",
