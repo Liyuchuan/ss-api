@@ -21,6 +21,9 @@ enum ErrorCode: int implements ErrorCodeInterface
 {
     use EnumConstantsTrait;
 
+    #[Message('没有权限')]
+    case PERMISSION_DENY = 403;
+
     #[Message('Server Error')]
     case SERVER_ERROR = 500;
 
@@ -30,6 +33,9 @@ enum ErrorCode: int implements ErrorCodeInterface
     #[Message('授权失败')]
     case OAUTH_FAILED = 701;
 
+    #[Message('密码已失效')]
+    case SECRET_INVALID = 702;
+
     #[Message('参数错误')]
     case PARAMS_INVALID = 1000;
 
@@ -38,6 +44,9 @@ enum ErrorCode: int implements ErrorCodeInterface
 
     #[Message('密码不存在')]
     case SECRET_NOT_EXIST = 1100;
+
+    #[Message('内容不存在')]
+    case CONTENT_NOT_EXIST = 1200;
 
     public function getMessage(?array $translate = null): string
     {

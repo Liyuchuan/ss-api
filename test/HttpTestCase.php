@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace HyperfTest;
 
+use App\Service\SubService\UserAuth;
 use App\Service\SubService\WeChatService;
 use Hyperf\Di\Container;
 use Hyperf\Testing\Client;
@@ -67,6 +68,12 @@ abstract class HttpTestCase extends TestCase
             ]);
 
             self::$token = $res['data']['token'];
+
+            $this->json('/secret/check', [
+                'secret' => '666',
+            ], [
+                UserAuth::X_TOKEN => self::$token,
+            ]);
         }
     }
 }
