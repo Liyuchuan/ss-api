@@ -39,10 +39,10 @@ class ContentSchema implements JsonSerializable
     #[Property(property: 'type', title: '类型 0 文本 1 音频 2 视频', type: 'int')]
     public ?ContentType $type;
 
-    #[Property(property: 'created_at', title: '', type: 'mixed')]
+    #[Property(property: 'created_at', title: '', type: 'string')]
     public mixed $createdAt;
 
-    #[Property(property: 'updated_at', title: '', type: 'mixed')]
+    #[Property(property: 'updated_at', title: '', type: 'string')]
     public mixed $updatedAt;
 
     public function __construct(Content $model, bool $withContent = false)
@@ -51,9 +51,7 @@ class ContentSchema implements JsonSerializable
         $this->userId = $model->user_id;
         $this->secretId = $model->secret_id;
         $this->title = $model->title;
-        if ($withContent) {
-            $this->content = $model->getContent();
-        }
+        $this->content = $withContent ? $model->getContent() : null;
         $this->type = $model->type;
         $this->createdAt = $model->created_at?->toDateTimeString();
         $this->updatedAt = $model->updated_at?->toDateTimeString();
@@ -67,7 +65,7 @@ class ContentSchema implements JsonSerializable
             'secret_id' => $this->secretId,
             'title' => $this->title,
             'content' => $this->content,
-            'type' => $this->type,
+            'type' => $this->type?->value,
             'created_at' => $this->createdAt,
             'updated_at' => $this->updatedAt,
         ];

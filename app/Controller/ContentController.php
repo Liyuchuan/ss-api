@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Schema\ContentListSchema;
 use App\Schema\ContentSchema;
 use App\Schema\SavedSchema;
 use App\Service\ContentService;
@@ -55,6 +56,21 @@ class ContentController extends Controller
         $userAuth = UserAuth::instance();
 
         $result = $this->service->info($id, $userAuth);
+
+        return $this->response->success($result);
+    }
+
+    #[SA\Get(path: '/content/list', summary: '内容列表', tags: ['内容管理'])]
+    #[SA\RequestBody(content: new SA\JsonContent(properties: [
+        new SA\Property(property: 'secret_id', description: '密码 ID', type: 'integer', rules: 'required|integer'),
+    ]))]
+    #[SA\Response(response: '200', content: new SA\JsonContent(ref: ContentListSchema::class))]
+    public function list(SwaggerRequest $request)
+    {
+        $secretId = (int) $request->input('secret_id');
+        $userAuth = UserAuth::instance();
+
+        $result = $this->service->list($secretId, $userAuth);
 
         return $this->response->success($result);
     }

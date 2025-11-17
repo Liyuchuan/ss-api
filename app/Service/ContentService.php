@@ -16,9 +16,11 @@ use App\Constants\ContentType;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\Content;
+use App\Schema\ContentListSchema;
 use App\Schema\ContentSchema;
 use App\Service\Dao\ContentDao;
 use App\Service\Dao\SecretDao;
+use App\Service\Formatter\ContentFormatter;
 use App\Service\SubService\Encrypter;
 use App\Service\SubService\UserAuth;
 use Han\Utils\Service;
@@ -31,6 +33,9 @@ class ContentService extends Service
 
     #[Inject]
     protected Encrypter $encrypter;
+
+    #[Inject]
+    protected ContentFormatter $formatter;
 
     /**
      * @param array{title: string, content: string, secret_id: int} $input
@@ -78,5 +83,21 @@ class ContentService extends Service
         }
 
         return new ContentSchema($model, true);
+    }
+
+    public function list(int $secretId, UserAuth $userAuth)
+    {
+        $userAuth->build();
+
+        $secret = di()->get(SecretDao::class)->first($secretId, true);
+        if ($secret->user_id !== $userAuth->getUserId()) {
+            throw new BusinessException(ErrorCode::PERMISSION_DENY);
+        }
+
+        $contents = $this->dao->findBySecretId($secret->id);
+
+        $result = $this->formatter->formatList($contents);
+
+        return new ContentListSchema($contents->count(), $result);
     }
 }

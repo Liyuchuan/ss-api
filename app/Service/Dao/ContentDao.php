@@ -16,16 +16,22 @@ use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Model\Content;
 use Han\Utils\Service;
+use Hyperf\Database\Model\Collection;
 
 class ContentDao extends Service
 {
     public function first(int $id, bool $throw = false): ?Content
     {
-        $model = Content::findFromCache($id);
+        $model = Content::find($id);
         if (! $model && $throw) {
             throw new BusinessException(ErrorCode::CONTENT_NOT_EXIST);
         }
 
         return $model;
+    }
+
+    public function findBySecretId(int $secretId): Collection
+    {
+        return Content::query()->where('secret_id', $secretId)->get();
     }
 }
