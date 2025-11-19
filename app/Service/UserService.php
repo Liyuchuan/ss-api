@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Schema\UserSchema;
+use App\Service\Dao\SecretDao;
 use App\Service\Dao\UserDao;
 use Han\Utils\Service;
 use Hyperf\Di\Annotation\Inject;
@@ -26,6 +27,8 @@ class UserService extends Service
     {
         $model = $this->dao->first($id, true);
 
-        return new UserSchema($model);
+        $hasSecret = di()->get(SecretDao::class)->countByUserId($model->id);
+
+        return new UserSchema($model, $hasSecret > 0);
     }
 }

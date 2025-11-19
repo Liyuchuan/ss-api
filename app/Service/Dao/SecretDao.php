@@ -51,4 +51,9 @@ class SecretDao extends Service
             ->where('secret', md5($secret))
             ->first();
     }
+
+    public function countByUserId(int $userId): int
+    {
+        return Secret::query()->where('user_id', $userId)->count();
+    }
 }
