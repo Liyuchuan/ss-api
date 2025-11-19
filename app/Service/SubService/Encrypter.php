@@ -19,14 +19,14 @@ class Encrypter extends Service
 {
     public function encrypt(string $content, string $secret): string
     {
-        $encrypt = new EncryptionEncrypter(md5('secret:' . $secret), 'AES-256-CBC');
+        $encrypt = new EncryptionEncrypter($secret, 'AES-256-CBC');
 
         return $encrypt->encryptString($content);
     }
 
     public function decrypt(string $content, string $secret): string
     {
-        $encrypt = new EncryptionEncrypter(md5('secret:' . $secret), 'AES-256-CBC');
+        $encrypt = new EncryptionEncrypter($secret, 'AES-256-CBC');
 
         return $encrypt->decryptString($content);
     }

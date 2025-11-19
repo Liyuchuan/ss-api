@@ -47,11 +47,11 @@ class UserAuth
 
     public function save(string $secret): static
     {
-        $this->secret = $secret;
+        $this->secret = md5('secret:' . $secret);
 
         di()->get(Redis::class)->set(
             self::PREFIX . $this->token,
-            Json::encode(['id' => $this->userId, 'secret' => $secret]),
+            Json::encode(['id' => $this->userId, 'secret' => $this->secret]),
             86400
         );
 
