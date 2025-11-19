@@ -45,10 +45,15 @@ class ContentController extends Controller
         return $this->response->success(new SavedSchema($result));
     }
 
-    #[SA\Post(path: '/content/info', summary: '内容详情', tags: ['内容管理'])]
-    #[SA\RequestBody(content: new SA\JsonContent(properties: [
-        new SA\Property(property: 'id', description: '内容 ID', type: 'integer', rules: 'required|integer'),
-    ]))]
+    #[SA\Get(path: '/content/info', summary: '内容详情', tags: ['内容管理'], parameters: [
+        new SA\Parameter(
+            name: 'id',
+            description: '内容 ID',
+            in: 'query',
+            schema: new SA\Schema(type: 'integer'),
+            required: true,
+        )
+    ])]
     #[SA\Response(response: '200', content: new SA\JsonContent(ref: ContentSchema::class))]
     public function info(SwaggerRequest $request)
     {
