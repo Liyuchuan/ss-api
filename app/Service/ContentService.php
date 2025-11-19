@@ -38,7 +38,7 @@ class ContentService extends Service
     protected ContentFormatter $formatter;
 
     /**
-     * @param array{title: string, content: string, secret_id: int} $input
+     * @param array{title: string, content: string, secret_id: int, type: int} $input
      */
     public function save(
         int $id,
@@ -65,10 +65,10 @@ class ContentService extends Service
             $model = new Content();
             $model->user_id = $userAuth->getUserId();
             $model->secret_id = $secret->id;
-            $model->type = ContentType::TEXT;
         }
 
         $model->title = $input['title'];
+        $model->type = ContentType::from((int) ($input['type'] ?? 0));
         $model->content = $this->encrypter->encrypt($input['content'], $userAuth->getSecret());
         return $model->save();
     }
