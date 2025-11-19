@@ -45,6 +45,9 @@ enum ErrorCode: int implements ErrorCodeInterface
     #[Message('密码不存在')]
     case SECRET_NOT_EXIST = 1100;
 
+    #[Message('密码已经存在')]
+    case SECRET_ALREADY_EXIST = 1101;
+
     #[Message('内容不存在')]
     case CONTENT_NOT_EXIST = 1200;
 

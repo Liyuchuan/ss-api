@@ -52,7 +52,7 @@ class ContentController extends Controller
             in: 'query',
             schema: new SA\Schema(type: 'integer'),
             required: true,
-        )
+        ),
     ])]
     #[SA\Response(response: '200', content: new SA\JsonContent(ref: ContentSchema::class))]
     public function info(SwaggerRequest $request)
