@@ -45,4 +45,13 @@ class SecretTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testMessage()
+    {
+        $res = $this->get('/secret/message', [], [
+            UserAuth::X_TOKEN => self::$token,
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Schema\MessageSchema;
 use App\Schema\SavedSchema;
 use App\Schema\SecretSchema;
 use App\Service\SecretService;
@@ -55,5 +56,14 @@ class SecretController extends Controller
         $result = $this->service->check($secret, $userId);
 
         return $this->response->success($result);
+    }
+
+    #[SA\Get(path: '/secret/message', summary: '密码提示', tags: ['密码管理'])]
+    #[SA\Response(response: '200', content: new SA\JsonContent(ref: MessageSchema::class))]
+    public function message(): ResponsePlusInterface
+    {
+        return $this->response->success(
+            $this->service->message()
+        );
     }
 }
