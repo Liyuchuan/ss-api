@@ -13,6 +13,7 @@
     "license": "Apache-2.0",
     "require": {
         "php": ">=8.1",
+        "hyperf/async-queue": "^3.1",
         "hyperf/cache": "~3.1.0",
         "hyperf/command": "~3.1.0",
         "hyperf/config": "~3.1.0",
@@ -29,11 +30,13 @@
         "hyperf/model-cache": "^3.1",
         "hyperf/process": "~3.1.0",
         "hyperf/redis": "~3.1.0",
+        "hyperf/rpc-log-listener": "^1.1",
         "hyperf/swagger": "^3.1",
         "hyperf/validation": "^3.1",
         "limingxinleo/easywechat-classmap": "^1.1",
         "limingxinleo/hyperf-utils": "^4.1",
         "limingxinleo/i-encryption": "^1.1",
+        "liyuchuan/plt-common": "^1.0",
         "w7corp/easywechat": "^6.18"
     },
     "require-dev": {

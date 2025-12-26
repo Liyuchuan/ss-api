@@ -20,6 +20,9 @@ use App\Service\SubService\UserAuth;
 use App\Service\SubService\WeChatService;
 use Han\Utils\Service;
 use Hyperf\Di\Annotation\Inject;
+use Liyuchuan\PltCommon\RPC\User\UserInterface;
+
+use function Hyperf\Support\env;
 
 class LoginService extends Service
 {
@@ -29,14 +32,14 @@ class LoginService extends Service
     #[Inject]
     protected UserDao $dao;
 
+    #[Inject]
+    protected UserInterface $user;
+
     public function login(string $code): LoginSchema
     {
-        $result = $this->chat->login($code);
-        if (empty($result['openid'])) {
-            throw new BusinessException(ErrorCode::OAUTH_FAILED);
-        }
+        $res = $this->user->firstByCode($code, env('MP_APP_ID'));
 
-        $model = $this->dao->firstOrCreate($result['openid']);
+        $model = $this->dao->firstOrCreate($res['id']);
 
         $userAuth = UserAuth::instance()->init($model);
 

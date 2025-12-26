@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 use Hyperf\Command\Listener\FailToHandleListener;
 use Hyperf\ExceptionHandler\Listener\ErrorExceptionHandler;
+use Hyperf\RPCLogListener\RPCEventListener;
 
 /*
  * This file is part of Hyperf.
@@ -20,7 +21,9 @@ use Hyperf\ExceptionHandler\Listener\ErrorExceptionHandler;
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 return [
     ErrorExceptionHandler::class,
     FailToHandleListener::class,
+    RPCEventListener::class,
 ];

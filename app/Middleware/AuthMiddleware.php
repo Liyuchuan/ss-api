@@ -34,7 +34,7 @@ class AuthMiddleware implements MiddlewareInterface
         $dispatched = $request->getAttribute(Dispatched::class);
         $route = (string) $dispatched->handler?->route;
 
-        if (in_array($route, ['/login', '/'], true)) {
+        if (in_array($route, ['/login', '/', '/home'], true)) {
             return $handler->handle($request);
         }
 

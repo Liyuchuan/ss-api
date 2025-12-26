@@ -11,7 +11,7 @@
  Target Server Version : 80030 (8.0.30)
  File Encoding         : 65001
 
- Date: 21/11/2025 20:28:54
+ Date: 21/11/2025 21:02:25
 */
 
 SET NAMES utf8mb4;
@@ -68,19 +68,17 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `openid` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '小程序 OpenID',
+  `id` bigint unsigned NOT NULL,
   `created_at` datetime NOT NULL DEFAULT '2025-01-01 00:00:00',
   `updated_at` datetime NOT NULL DEFAULT '2025-01-01 00:00:00',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQUE_OPENID` (`openid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` (`id`, `openid`, `created_at`, `updated_at`) VALUES (1, 'oDA2A1x56y3kqdwVLqCP_WqcI0x0', '2025-11-09 22:35:37', '2025-11-09 22:35:37');
+INSERT INTO `user` (`id`, `created_at`, `updated_at`) VALUES (1, '2025-11-09 22:35:37', '2025-11-09 22:35:37');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

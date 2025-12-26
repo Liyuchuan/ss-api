@@ -17,6 +17,7 @@ use App\Service\LoginService;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Swagger\Annotation as SA;
 use Hyperf\Swagger\Request\SwaggerRequest;
+use Swow\Psr7\Message\ResponsePlusInterface;
 
 #[SA\HyperfServer('http')]
 class LoginController extends Controller
@@ -29,7 +30,7 @@ class LoginController extends Controller
         new SA\Property(property: 'code', description: '微信授权码', type: 'string', rules: 'required|string'),
     ]))]
     #[SA\Response(response: '200', content: new SA\JsonContent(ref: LoginSchema::class))]
-    public function login(SwaggerRequest $request)
+    public function login(SwaggerRequest $request): ResponsePlusInterface
     {
         $code = (string) $request->input('code');
 

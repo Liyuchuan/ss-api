@@ -23,7 +23,7 @@ use Carbon\Carbon;
  * @property int $secret_id 密码 ID
  * @property string $title 标题
  * @property string $content 内容
- * @property ContentType $type 类型 0 文本 1 音频 2 视频
+ * @property ContentType $type 类型 0 文本 1 音频 2 视频 3 图片
  * @property Carbon $created_at
  * @property Carbon $updated_at
  */

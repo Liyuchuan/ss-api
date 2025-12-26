@@ -21,7 +21,7 @@ class UserDao extends Service
 {
     public function first(int $id, bool $throw = false): ?User
     {
-        $model = User::findFromCache($id);
+        $model = User::find($id);
         if (! $model && $throw) {
             throw new BusinessException(ErrorCode::USER_NOT_EXIST);
         }
@@ -29,12 +29,12 @@ class UserDao extends Service
         return $model;
     }
 
-    public function firstOrCreate(string $openid): User
+    public function firstOrCreate(int $userId): User
     {
-        $model = $this->firstByOpenid($openid);
+        $model = $this->first($userId);
         if (! $model) {
             $model = new User();
-            $model->openid = $openid;
+            $model->id = $userId;
             $model->save();
         }
 
